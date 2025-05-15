@@ -1,0 +1,235 @@
+body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #000000; /* Чёрный фон */
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+  .scrollable-content {
+            position: absolute;
+            top: 50px; /* Высота верхнего меню */
+            bottom: 60px; /* Высота нижнего меню */
+            left: 0;
+            right: 0;
+            overflow-y: scroll; /* Включаем вертикальную прокрутку */
+    overflow-y: auto
+            padding: 10px;
+        }
+        .scene {
+            display: none; /* Скрываем сцены по умолчанию */
+            flex: 1;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .scene.active {
+            display: flex;
+	}
+
+        .balance-display {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            position: relative;
+            margin-top: 50px;
+            padding: 10px;
+            font-size: 24px;
+            text-align: center;
+            color: #ffffff; /* Белый текст */
+        }
+
+        .balance-number {
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .animated-ticket {
+            margin-top: 10px;
+            width: 50px;
+            height: auto;
+        }
+
+        .todo-container {
+            margin-top: 50px; /* Отступ сверху */
+        }
+
+        .task-button {
+            display: block;
+            width: 90%; /* Ширина кнопки относительно экрана */
+            max-width: 400px; /* Максимальная ширина кнопки */
+            margin: 10px auto;
+            padding: 20px; /* Высота кнопки */
+            font-size: 18px; /* Размер текста */
+            color: #ffffff; /* Белый текст */
+            background-color: #333333; /* Тёмно-серый фон */
+            border: none; /* Убираем границу */
+            border-radius: 25px; /* Закруглённые углы */
+            text-align: center; /* Центрирование текста */
+            text-decoration: none; /* Убираем подчеркивание (для ссылок) */
+            cursor: pointer; /* Указатель мыши */
+            transition: background-color 0.3s ease; /* Анимация изменения цвета */
+            user-select: none; /* Убираем выделение текста при клике */
+        }
+        .task-button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Убираем синюю рамку при клике */
+        .task-button:focus {
+            outline: none;
+            box-shadow: none; /* Убираем возможное свечение */
+        }
+
+        .task-button:hover {
+            background-color: #444444; /* Цвет при наведении */
+        }
+
+        .task-button:active {
+            background-color: #222222; /* Цвет при нажатии */
+        }
+        #debug {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            z-index: 1000;
+        }
+        #debug span {
+            margin-right: 20px;
+        }
+        .bottom-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(34, 34, 34, 0.7); /* Полупрозрачный фон */
+            backdrop-filter: blur(2px); /* Эффект размытия */
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+        }
+        .button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .button img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+
+        .button span {
+            font-size: 12px;
+        }
+	    /* отдельное окно */
+	    .newstabel {
+      background: #474747;
+      border-radius: 24px;
+      width: 370px;
+      height: 210px;
+      margin: 20px auto;
+      box-sizing: border-box;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    /* Верхний текст */
+    .newstabel__title {
+      color: #fff;
+      font-size: 24px;
+      margin-top: 24px;
+      margin-left: 22px;
+      margin-bottom: 90px;
+      font-family: sans-serif;
+    }
+    /* Чип */
+    .newstabel__chip {
+      background: #fff;
+      color: #222;
+      border-radius: 22.5px;
+      width: 170px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      margin-left: 15px;
+      font-family: sans-serif;
+      text-decoration: none;
+      outline: none;           /* Убирает синюю обводку при фокусе */
+  box-shadow: none;        /* Убирает возможную тень */
+}
+.newstabel__chip:focus {
+  outline: none;           /* Убирает синюю обводку при фокусе */
+  box-shadow: none;
+    }
+  .newstabel__chip:active {
+      box-shadow: 0 1px 2px rgba(0,0,0,0.12);
+      transform: scale(0.97);
+    }
+    .newstabel__chip:focus {
+      outline: 2px solid #888;
+	  }
+	      .newstabel__img {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  width: 80px;   /* Можно изменить размер под ваш макет */
+  height: 80px;  /* Можно изменить размер под ваш макет */
+  border-radius: 16px; /* Если нужна скруглённая картинка */
+  object-fit: cover;
+	    }
+.profile-container {
+  margin: 20px auto 0;
+  padding: 20px 30px;
+  max-width: 320px;
+  background: #222;
+  border-radius: 16px;
+  color: #fff;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+}
+
+.profile-container img {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  border: 2px solid #00aaff;
+}
+
+.profile-container h2 {
+  margin: 0 0 8px;
+  font-weight: 600;
+  font-size: 24px;
+  word-break: break-word;
+}
+
+.profile-container p {
+  margin: 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+
+

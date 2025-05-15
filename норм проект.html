@@ -1,0 +1,220 @@
+<div style="overflow-y: scroll; height: 100vh;">
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Telegram App</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
+  <script src="//whephiwums.com/sdk.js" data-zone="9286586" data-sdk="show_9286586"></script>
+</head>
+ <div id="tasks" class="scene active">
+    <div class="app-container">
+      <div class="balance-display">
+        <div class="balance-content">
+          <span class="balance-number">0</span>
+          <img src="animated-ticket.gif" class="animated-ticket" alt="Ticket" />
+        </div>
+      </div>
+       <div class="newstabel">
+    <div class="newstabel__title">Официальный канал проекта</div>
+    <a class="newstabel__chip" href="https://t.me/ThePlaneOfficial" target="_blank">Открыть</a>
+        <img class="newstabel__img" src="newsofficial.png" alt="Логотип проекта">
+       </div>
+
+      <div class="todo-container">
+        <a href="http://t.me/Planewheelbot" class="task-button">наша рулетка</a>
+        <a href="https://t.me/kanal_testow" class="task-button" target="_blank" rel="noopener noreferrer">подписатся</a>
+        <a href="https://t.me/ThePlaneOfficial" class="task-button" target="_blank" rel="noopener noreferrer">подписатся</a>
+        <a href="https://t.me/fragment" class="task-button" target="_blank" rel="noopener noreferrer">тест</a>
+        <a id="adButtonTMA" class="task-button tma-ad-button" onclick="handleTmaAdClick()">Посмотреть рекламу (TMA) и получить 10 билетов</a>
+        <a href="#" onclick="handleButtonClick(this, showAd)" class="task-button">Посмотреть рекламу и получить 10 билетов</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Сцена Обмен (swap) -->
+  <div id="swap" class="scene">
+    <h1>Обмен</h1>
+    <p>Контент для обмена.</p>
+  </div>
+
+  <!-- Сцена Профиль (profile) -->
+  <div id="profile" class="scene">
+    <div id="profile" class="scene">
+  <div class="profile-container">
+    <img id="profile-photo" src="" alt="Аватар пользователя" />
+    <h2 id="profile-username">Загрузка...</h2>
+    <p id="profile-userid"></p>
+  </div>
+</div>
+  </div>
+<div id="swap" class="scene">
+    <h1>Обмен</h1>
+    <p>Контент для обмена.</p>
+  </div>
+
+  <!-- Сцена Профиль (profile) -->
+  <div id="profile" class="scene">
+    <h1>Профиль</h1>
+    <p>Контент для профиля.</p>
+  </div>
+
+  <!-- Нижняя панель с кнопками -->
+  <div class="bottom-bar">
+    <div class="button" onclick="showScene('tasks')">
+      <img src="task.png" alt="Icon Задания" />
+      <span>задания</span>
+    </div>
+    <div class="button" onclick="showScene('swap')">
+      <img src="swap.png" alt="Icon Обмен" />
+      <span>обмен</span>
+    </div>
+    <div class="button" onclick="showScene('profile')">
+      <img src="profile.png" alt="Icon Профиль" />
+      <span>профиль</span>
+    </div>
+  </div>
+  <div id="debug">
+        <span id="hash">Hash: Generating...</span>
+        <span id="time">Time: 0 seconds</span>
+    </div>
+  <script>
+  function generateHash() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+
+        // Initialize the hash and set it in the debug panel
+        document.getElementById('hash').textContent = `Hash: ${generateHash()}`;
+
+        // Initialize a timer that starts from 0 seconds
+        let elapsedSeconds = 0;
+
+        // Update the time every second
+        setInterval(() => {
+            elapsedSeconds++;
+            document.getElementById('time').textContent = `Time: ${elapsedSeconds} seconds`;
+        }, 1000);
+  </script>
+  <script>
+  function showScene(sceneId) {
+      const scenes = document.querySelectorAll('.scene');
+      scenes.forEach(scene => scene.classList.remove('active'));
+      const activeScene = document.getElementById(sceneId);
+      if (activeScene) {
+        activeScene.classList.add('active');
+      }
+    }
+  </script>
+  <script>
+function handleTmaAdClick() {
+            const button = document.querySelector('.tma-ad-button');
+            if (button.classList.contains('disabled')) {
+                return; // Если кнопка заблокирована, ничего не делаем
+            }
+
+            // Выполняем функционал для TMA
+            if (window.initCdTma) {
+                window.initCdTma?.({ id: '6072092' })
+                    .then(show => {
+                        show(); // Показываем рекламу
+                        console.log('TMA реклама показана');
+                        addTickets(); // Добавляем билеты после рекламы
+                    })
+                    .catch(e => console.error('Ошибка показа TMA рекламы:', e));
+            } else {
+                console.error("Скрипт TMA (https://js.onclckvd.com) не загружен.");
+            }
+    // Функция переключения сцен
+    // Пример функции добавления билетов
+    function addTickets(amount = 10) {
+      const balanceElement = document.querySelector('.balance-number');
+      let currentBalance = parseInt(balanceElement.textContent, 10) || 0;
+      const newBalance = currentBalance + amount;
+      balanceElement.textContent = newBalance;
+      // Здесь можно добавить сохранение баланса и отправку в Telegram, если нужно
+    }
+
+    // Обработка клика по кнопке рекламы TMA
+    function handleTmaAdClick() {
+      const button = document.getElementById('adButtonTMA');
+      if (button.disabled) return;
+
+      button.disabled = true;
+      // Симуляция показа рекламы (замените на реальную логику)
+      setTimeout(() => {
+        addTickets(10);
+        button.disabled = false;
+      }, 2000);
+    }
+    // Обработка кнопки с задержкой и показом рекламы Show
+    function handleButtonClick(button, callback) {
+      if (button.classList.contains('disabled')) return;
+
+      callback();
+
+      button.classList.add('disabled');
+      button.style.pointerEvents = 'none';
+
+      let cooldown = 20;
+      const originalText = button.textContent;
+
+      const timer = setInterval(() => {
+        button.textContent = `Подождите ${cooldown} секунд...`;
+        cooldown--;
+
+        if (cooldown < 0) {
+          clearInterval(timer);
+          button.classList.remove('disabled');
+          button.style.pointerEvents = '';
+          button.textContent = originalText;
+        }
+      }, 1000);
+    }
+
+    // Пример функции показа рекламы Show
+    function showAd() {
+      if (typeof show_9286586 === 'function') {
+        show_9286586().then(() => {
+          console.log('Реклама показана');
+          addTickets(10);
+        }).catch(e => console.error('Ошибка показа рекламы:', e));
+      } else {
+        console.error('Функция show_9286586 недоступна.');
+      }
+    }
+  document.addEventListener('DOMContentLoaded', () => {
+  const tg = window.Telegram?.WebApp;
+
+  const usernameElem = document.getElementById('profile-username');
+  const photoElem = document.getElementById('profile-photo');
+  const userIdElem = document.getElementById('profile-userid');
+
+  if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    const user = tg.initDataUnsafe.user;
+
+    // Отображаем username (ник)
+    usernameElem.textContent = user.username ? `@${user.username}` : (user.first_name || 'Пользователь');
+
+    // Отображаем user id (можно убрать, если не нужно)
+    userIdElem.textContent = `ID: ${user.id}`;
+
+    // Если есть фото, подгружаем аватар (Telegram WebApp не даёт прямую ссылку, но можно использовать user.photo_url, если есть)
+    // Обычно Telegram WebApp не даёт фото напрямую, но если есть, подставьте сюда
+    if (user.photo_url) {
+      photoElem.src = user.photo_url;
+    } else {
+      // Если фото нет, ставим заглушку с инициалами или иконку
+      photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // пример иконки пользователя
+    }
+  } else {
+    // Если Telegram API недоступен (например, в браузере)
+    usernameElem.textContent = 'Гость';
+    userIdElem.textContent = '';
+    photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+  }
+});
+  </script>
+</body>
+</html>
