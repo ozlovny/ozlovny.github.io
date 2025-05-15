@@ -107,8 +107,60 @@
       }
     }
   </script>
-  <script>
-function handleTmaAdClick() {
+	<script>
+        // Функция для обработки нажатия с задержкой и таймером
+        function handleButtonClick(button, callback) {
+            if (button.classList.contains('disabled')) {
+                return; // Если кнопка уже отключена, ничего не делаем
+            }
+
+            // Выполняем действие кнопки
+            callback();
+
+            // Блокируем кнопку
+            button.classList.add('disabled');
+            button.style.pointerEvents = 'none';
+
+            let cooldown = 20; // Задержка в секундах
+            const originalText = button.textContent; // Сохраняем оригинальный текст кнопки
+
+            // Обновляем текст кнопки с таймером
+            const timer = setInterval(() => {
+                button.textContent = `Подождите ${cooldown} секунд...`;
+                cooldown--;
+
+                if (cooldown < 0) {
+                    clearInterval(timer);
+                    button.classList.remove('disabled');
+                    button.style.pointerEvents = '';
+                    button.textContent = originalText; // Восстанавливаем оригинальный текст
+                }
+            }, 1000); // Обновление каждую секунду
+        }
+
+        // Функция для показа рекламы
+        function showAd() {
+            if (typeof show_9286586 === 'function') {
+                show_9286586().then(() => {
+                    console.log('Реклама показана');
+                    addTickets(); // Добавляем билеты после рекламы
+                }).catch(e => console.error('Ошибка показа рекламы:', e));
+            } else {
+                console.error("Функция show_9286586 недоступна.");
+            }
+        }
+
+        // Функция для добавления билетов
+        function addTickets() {
+            // Находим элемент с балансом
+            const balanceElement = document.querySelector('.balance-number');
+            const currentBalance = parseInt(balanceElement.textContent, 10);
+
+            // Добавляем 10 билетов
+            balanceElement.textContent = currentBalance + 10;
+        }
+        // Обрабатываем кнопку для TMA рекламы
+        function handleTmaAdClick() {
             const button = document.querySelector('.tma-ad-button');
             if (button.classList.contains('disabled')) {
                 return; // Если кнопка заблокирована, ничего не делаем
@@ -126,65 +178,44 @@ function handleTmaAdClick() {
             } else {
                 console.error("Скрипт TMA (https://js.onclckvd.com) не загружен.");
             }
-    // Функция переключения сцен
-    // Пример функции добавления билетов
-    function addTickets(amount = 10) {
-      const balanceElement = document.querySelector('.balance-number');
-      let currentBalance = parseInt(balanceElement.textContent, 10) || 0;
-      const newBalance = currentBalance + amount;
-      balanceElement.textContent = newBalance;
-      // Здесь можно добавить сохранение баланса и отправку в Telegram, если нужно
-    }
 
-    // Обработка клика по кнопке рекламы TMA
-    function handleTmaAdClick() {
-      const button = document.getElementById('adButtonTMA');
-      if (button.disabled) return;
+   
 
-      button.disabled = true;
-      // Симуляция показа рекламы (замените на реальную логику)
-      setTimeout(() => {
-        addTickets(10);
-        button.disabled = false;
-      }, 2000);
-    }
-    // Обработка кнопки с задержкой и показом рекламы Show
-    function handleButtonClick(button, callback) {
-      if (button.classList.contains('disabled')) return;
-
-      callback();
-
-      button.classList.add('disabled');
-      button.style.pointerEvents = 'none';
-
-      let cooldown = 20;
-      const originalText = button.textContent;
-
-      const timer = setInterval(() => {
-        button.textContent = `Подождите ${cooldown} секунд...`;
-        cooldown--;
-
-        if (cooldown < 0) {
-          clearInterval(timer);
-          button.classList.remove('disabled');
-          button.style.pointerEvents = '';
-          button.textContent = originalText;
+   
+            // Блокируем кнопку
+            startCooldown(button, 20); // Задержка 10 секунд
         }
-      }, 1000);
-    }
 
-    // Пример функции показа рекламы Show
-    function showAd() {
-      if (typeof show_9286586 === 'function') {
-        show_9286586().then(() => {
-          console.log('Реклама показана');
-          addTickets(10);
-        }).catch(e => console.error('Ошибка показа рекламы:', e));
-      } else {
-        console.error('Функция show_9286586 недоступна.');
-      }
-    }
-  </script>
+        // Функция для добавления билетов
+        function addTickets() {
+            const balanceElement = document.querySelector('.balance-number');
+            const currentBalance = parseInt(balanceElement.textContent, 10);
+            balanceElement.textContent = currentBalance + 10; // Увеличиваем баланс на 10
+        }
+
+        // Общая функция для задержки кнопки
+        function startCooldown(button, cooldownTime) {
+            button.classList.add('disabled');
+            button.style.pointerEvents = 'none';
+
+            let cooldown = cooldownTime;
+            const originalText = button.textContent;
+
+            // Обновляем текст с таймером
+            const timer = setInterval(() => {
+                button.textContent = `Подождите ${cooldown} секунд...`;
+                cooldown--;
+
+                if (cooldown < 0) {
+                    clearInterval(timer);
+                    button.classList.remove('disabled');
+                    button.style.pointerEvents = '';
+                    button.textContent = originalText; // Восстанавливаем исходный текст
+                }
+            }, 1000); // Обновляем каждую секунду
+        }
+	    
+    </script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram?.WebApp;
