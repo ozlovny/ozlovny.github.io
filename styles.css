@@ -108,37 +108,60 @@ body {
         #debug span {
             margin-right: 20px;
         }
-        .bottom-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: rgba(34, 34, 34, 0.7); /* Полупрозрачный фон */
-            backdrop-filter: blur(2px); /* Эффект размытия */
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            padding: 10px 0;
-            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
-        }
-        .button {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            text-decoration: none;
-        }
+         .bottom-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(34, 34, 34, 0.7); /* Полупрозрачный фон */
+    backdrop-filter: blur(2px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 100;
+}
 
-        .button img {
-            width: 32px;
-            height: 32px;
-            margin-bottom: 5px;
-        }
+.bottom-bar .button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 18px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    color: #fff;
+    font-size: 14px;
+    gap: 4px;
+}
 
-        .button span {
-            font-size: 12px;
-        }
+.bottom-bar .button img {
+    width: 24px;
+    height: 24px;
+    transition: filter 0.2s;
+}
+
+/* Активная кнопка - полностью закрашенная */
+.bottom-bar .button.active {
+    background: #333; /* Яркая заливка */
+    color: #fff;         /* Тёмный текст */
+}
+
+.bottom-bar .button.active img {
+    filter: brightness(0) invert(1); /* Белая/тёмная иконка для контраста */
+}
+
+/* Для неактивных кнопок - прозрачный фон и белый текст/иконка */
+.bottom-bar .button:not(.active) {
+    background: transparent;
+    color: #fff;
+}
+
+.bottom-bar .button:not(.active) img {
+    filter: none;
+}
 	    /* отдельное окно */
 	    .newstabel {
       background: #474747;
