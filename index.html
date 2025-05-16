@@ -163,8 +163,9 @@
     <script>
         // Обрабатываем кнопку для TMA рекламы
         function handleTmaAdClick() {
-            const button = document.querySelector('.tma-ad-button');
-		document.querySelector('window.initCdTma').style.marginTop = '20px';
+            const button = document.querySelector('window.initCdTma');
+		document.querySelector('window.initCdTma').style.position = 'relative';
+document.querySelector('.onclicka-ad').style.top = '-50px'; // Смещает вниз
             if (button.classList.contains('disabled')) {
                 return; // Если кнопка заблокирована, ничего не делаем
             }
