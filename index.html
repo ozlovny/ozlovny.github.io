@@ -164,6 +164,7 @@
         // Обрабатываем кнопку для TMA рекламы
         function handleTmaAdClick() {
             const button = document.querySelector('.tma-ad-button');
+		document.querySelector('window.initCdTma').style.marginTop = '20px';
             if (button.classList.contains('disabled')) {
                 return; // Если кнопка заблокирована, ничего не делаем
             }
