@@ -230,6 +230,8 @@ body {
   font-size: 14px;
   color: #aaa;
 }
-
+.tma-ad-boton {
+    margin-top: 20px; /* Измените значение, чтобы настроить */
+}
 
 
