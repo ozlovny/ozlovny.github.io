@@ -97,13 +97,21 @@
   </script>
   <script>
   function showScene(sceneId) {
-      const scenes = document.querySelectorAll('.scene');
-      scenes.forEach(scene => scene.classList.remove('active'));
-      const activeScene = document.getElementById(sceneId);
-      if (activeScene) {
+    // 1. Переключаем сцену
+    const scenes = document.querySelectorAll('.scene');
+    scenes.forEach(scene => scene.classList.remove('active'));
+    const activeScene = document.getElementById(sceneId);
+    if (activeScene) {
         activeScene.classList.add('active');
-      }
     }
+
+    // 2. Переключаем активную кнопку
+    const buttons = document.querySelectorAll('.bottom-bar .button');
+    buttons.forEach(btn => btn.classList.remove('active'));
+    // Находим кнопку по sceneId (важно, чтобы в onclick был sceneId)
+    const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${sceneId}'`));
+    if (activeBtn) activeBtn.classList.add('active');
+  }
   </script>
 		<script>
         // Функция для обработки нажатия с задержкой и таймером
