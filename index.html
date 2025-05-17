@@ -9,6 +9,7 @@
   <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
   <script src="//whephiwums.com/sdk.js" data-zone="9286586" data-sdk="show_9286586"></script>
 	<script src="https://telegram.org/js/telegram-web-app.js"></script>
+	<script src="bedug.js"></script>
 </head>
  <div id="tasks" class="scene active">
     <div class="app-container">
@@ -77,24 +78,7 @@
   <div id="debug">
         <span id="hash">Hash: Generating...</span>
         <span id="time">Time: 0 seconds</span>
-    </div>
-  <script>
-  function generateHash() {
-            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-        }
-
-        // Initialize the hash and set it in the debug panel
-        document.getElementById('hash').textContent = `Hash: ${generateHash()}`;
-
-        // Initialize a timer that starts from 0 seconds
-        let elapsedSeconds = 0;
-
-        // Update the time every second
-        setInterval(() => {
-            elapsedSeconds++;
-            document.getElementById('time').textContent = `Time: ${elapsedSeconds} seconds`;
-        }, 1000);
-  </script>
+  </div>
   <script>
   function showScene(sceneId) {
     // 1. Переключаем сцену
