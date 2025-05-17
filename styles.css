@@ -94,6 +94,7 @@ body {
         }
         #debug {
             position: fixed;
+	    margin-top: 63px;
             top: 0;
             left: 0;
             width: 100%;
