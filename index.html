@@ -166,12 +166,10 @@
             balanceElement.textContent = currentBalance + 10;
         }
 	</script>
-    <script>
+ <script>
         // Обрабатываем кнопку для TMA рекламы
         function handleTmaAdClick() {
-            const button = document.querySelector('window.initCdTma');
-		document.querySelector('.window.initCdTma').style.position = 'relative';
-document.querySelector('.window.initCdTma').style.top = '-50px'; // Смещает вниз
+            const button = document.querySelector('.tma-ad-button');
             if (button.classList.contains('disabled')) {
                 return; // Если кнопка заблокирована, ничего не делаем
             }
@@ -225,7 +223,7 @@ document.querySelector('.window.initCdTma').style.top = '-50px'; // Смещае
             }, 1000); // Обновляем каждую секунду
         }
 	    
-			    </script>
+ </script>
   <script>
   document.addEventListener('DOMContentLoaded', () => {
   const tg = window.Telegram?.WebApp;
