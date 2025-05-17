@@ -1,5 +1,4 @@
-  <script>
-  function generateHash() {
+function generateHash() {
             return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
         }
 
@@ -14,4 +13,3 @@
             elapsedSeconds++;
             document.getElementById('time').textContent = `Time: ${elapsedSeconds} seconds`;
         }, 1000);
-  </script>
