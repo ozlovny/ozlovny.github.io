@@ -94,7 +94,7 @@ body {
         }
         #debug {
             position: fixed;
-		bottom: 747474646366363360px;
+            top: 100px;
             left: 0;
             width: 100%;
             background-color: #333;
