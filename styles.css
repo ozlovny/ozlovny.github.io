@@ -4,8 +4,7 @@ body {
             background-color: #000000; /* Чёрный фон */
             margin: 0;
             padding: 0;
-            overflow: hidden;
-  margin-top: 50px; /* сдвигает весь контент страницы вниз на 50px */
+            overflow: hidden;/* сдвигает весь контент страницы вниз на 50px */
         }
   .scrollable-content {
             position: absolute;
