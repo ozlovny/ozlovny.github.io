@@ -224,7 +224,7 @@ body {
 .profile-container {
   margin: 20px auto 0;
   padding: 20px 30px;
-  max-width: 320px;
+  max-width: 90%;
   background: #222;
   border-radius: 16px;
   color: #fff;
