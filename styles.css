@@ -1,11 +1,11 @@
 body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #000000; /* Чёрный фон */
-            margin: 0;
-            padding: 0;
-            overflow: hidden;/* сдвигает весь контент страницы вниз на 50px */
-        }
+      background: #000;
+      font-family: 'SF Pro Display', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      color: #fff;
+    }
   .scrollable-content {
             position: absolute;
             top: 50px; /* Высота верхнего меню */
@@ -36,7 +36,7 @@ body {
             align-items: center;
             flex-direction: column;
             position: relative;
-            margin-top: 80px;
+            margin-top: 55px;
             padding: 10px;
             font-size: 24px;
             text-align: center;
@@ -61,22 +61,19 @@ body {
         .task-button {
             display: block;
             width: 90%; /* Ширина кнопки относительно экрана */
-            max-width: 400px; /* Максимальная ширина кнопки */
+            max-width: 4000px; /* Максимальная ширина кнопки */
             margin: 10px auto;
             padding: 15px; /* Высота кнопки */
             font-size: 18px; /* Размер текста */
             color: #ffffff; /* Белый текст */
             background-color: #333333; /* Тёмно-серый фон */
             border: none; /* Убираем границу */
-            border-radius: 25px; /* Закруглённые углы */
+            border-radius: 15px; /* Закруглённые углы */
             text-align: center; /* Центрирование текста */
             text-decoration: none; /* Убираем подчеркивание (для ссылок) */
             cursor: pointer; /* Указатель мыши */
             transition: background-color 0.3s ease; /* Анимация изменения цвета */
             user-select: none; /* Убираем выделение текста при клике */
-        }
-        .task-button:hover {
-            background-color: #0056b3;
         }
 .task-button1 {
             display: block;
@@ -94,6 +91,10 @@ body {
             cursor: pointer; /* Указатель мыши */
             transition: background-color 0.3s ease; /* Анимация изменения цвета */
             user-select: none; /* Убираем выделение текста при клике */
+        }
+        .task-button:hover {
+            background-color: #0056b3;
+        }
 
         /* Убираем синюю рамку при клике */
         .task-button:focus {
@@ -110,7 +111,7 @@ body {
         }
         #debug {
             position: fixed;
-            top: 77px;
+            top: 0; 
             left: 0;
             width: 100%;
             background-color: #333;
@@ -123,7 +124,7 @@ body {
         #debug span {
             margin-right: 20px;
         }
-         .bottom-bar {
+ .bottom-bar {
     position: fixed;
     bottom: 0;
     left: 0;
@@ -240,7 +241,7 @@ body {
 .profile-container {
   margin: 20px auto 0;
   padding: 20px 30px;
-  max-width: 90%;
+  max-width: 320px;
   background: #222;
   border-radius: 16px;
   color: #fff;
@@ -269,7 +270,89 @@ body {
   font-size: 14px;
   color: #aaa;
 }
-.tma-ad-button {
-    margin-top: 20px; /* Измените значение, чтобы настроить */
+  .overlay {
+      display: none;
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.55);
+      backdrop-filter: blur(12px);
+      z-index: 998;
+      transition: opacity 0.25s;
+      opacity: 0;
+    }
+    .overlay.active {
+      display: block;
+      opacity: 1;
+    }
+    /* Bottom sheet */
+    .bottom-sheet {
+      position: fixed;
+      left: 0;
+      bottom: -300px;
+      width: 90vw;
+      background: #222;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -2px 16px rgba(0,0,0,0.3);
+      padding: 32px 20px 40px 20px;
+      text-align: center;
+      z-index: 1002;
+      transition: bottom 0.3s;
+    }
+    .bottom-sheet.active {
+      bottom: 0;
+    }
+    .bottom-sheet .sheet-title {
+      font-size: 22px;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+    .bottom-sheet .sheet-btn {
+      margin-top: 20px;
+      padding: 14px 0;
+      width: 100%;
+      background: #fff;
+      color: #222;
+      border: none;
+      border-radius: 14px;
+      font-size: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .bottom-sheet .sheet-btn:active {
+      background: #eee;
+    }
+    /* Для жеста закрытия (имитация полоски) */
+    .drag-bar {
+      width: 40px;
+      height: 5px;
+      background: #444;
+      border-radius: 3px;
+      margin: 0 auto 18px auto;
+    }
+.close-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  border-radius: 50%;
+  font-size: 28px;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  z-index: 1001;
 }
-	
+.close-btn:hover {
+  background: rgba(255,255,255,0.18);
+}
+
+
+
+	 
