@@ -26,10 +26,10 @@
        </div>
 
       <div class="todo-container">
-        <a href="http://t.me/Planewheelbot" class="task-button">наша рулетка</a>
-        <a href="https://t.me/kanal_testow" class="task-button" target="_blank" rel="noopener noreferrer">подписатся</a>
-        <a href="https://t.me/ThePlaneOfficial" class="task-button" target="_blank" rel="noopener noreferrer">подписатся</a>
-        <a href="https://t.me/fragment" class="task-button" target="_blank" rel="noopener noreferrer">тест</a>
+        <button class="task-button1" id="openMenu1">запустить бота</button>
+    <button class="task-button1" id="openMenu2">подписатся</button>
+  <button class="task-button1" id="openMenu3">подписатся</button>
+    <button class="task-button1" id="openMenu4">подписатся</button>
         <a id="adButtonTMA" class="task-button tma-ad-button" onclick="handleTmaAdClick()">Посмотреть рекламу (TMA) и получить 10 билетов</a>
         <a href="#" onclick="handleButtonClick(this, showAd)" class="task-button">Посмотреть рекламу и получить 10 билетов</a>
       </div>
@@ -243,5 +243,66 @@
   }
 });
   </script>
+	  <script>
+    const overlay = document.getElementById('overlay');
+    const sheet = document.getElementById('bottomSheet');
+    const closeBtn = document.getElementById('closeSheetBtn');
+    const sheetBtn = document.getElementById('sheetBtn');
+    const sheetTitle = document.getElementById('sheetTitle');
+
+    const menuData = {
+      menu1: { title: "Перейти в бота", url: "https://t.me/Planewheelbot" },
+      menu2: { title: "Подписка на канал 1", url: "https://t.me/ThePlaneOfficial" },
+      menu3: { title: "Подписка на канал 2", url: "https://t.me/kanal_testow" },
+      menu4: { title: "Подписка на канал 3", url: "https://t.me/ThePlaneOfficial" }
+    };
+
+    let currentUrl = "#";
+
+    function openSheet(menuKey) {
+      sheetTitle.textContent = menuData[menuKey].title;
+      sheetBtn.textContent = "Перейти";
+      currentUrl = menuData[menuKey].url;
+
+      overlay.classList.add('active');
+      sheet.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    document.getElementById('openMenu1').onclick = function() { openSheet('menu1'); };
+    document.getElementById('openMenu2').onclick = function() { openSheet('menu2'); };
+    document.getElementById('openMenu3').onclick = function() { openSheet('menu3'); };
+    document.getElementById('openMenu4').onclick = function() { openSheet('menu4'); };
+
+    function closeSheet() {
+      overlay.classList.remove('active');
+      sheet.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    overlay.onclick = closeBtn.onclick = closeSheet;
+
+    sheetBtn.onclick = function() {
+      window.open(currentUrl, '_blank');
+      closeSheet();
+    };
+
+    // Свайп вниз для закрытия
+    let startY = null;
+    sheet.querySelector('.drag-bar').addEventListener('touchstart', function(e) {
+      startY = e.touches[0].clientY;
+    });
+    sheet.querySelector('.drag-bar').addEventListener('touchmove', function(e) {
+      if (!startY) return;
+      let moveY = e.touches[0].clientY;
+      if (moveY - startY > 40) {
+        closeSheet();
+        startY = null;
+      }
+    });
+    sheet.querySelector('.drag-bar').addEventListener('touchend', function() {
+      startY = null;
+    });
+	  </script>
 </body>
 </html>
