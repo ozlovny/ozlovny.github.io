@@ -36,7 +36,7 @@ body {
             align-items: center;
             flex-direction: column;
             position: relative;
-            margin-top: 60px;
+            margin-top: 80px;
             padding: 10px;
             font-size: 24px;
             text-align: center;
@@ -63,7 +63,7 @@ body {
             width: 90%; /* Ширина кнопки относительно экрана */
             max-width: 400px; /* Максимальная ширина кнопки */
             margin: 10px auto;
-            padding: 20px; /* Высота кнопки */
+            padding: 15px; /* Высота кнопки */
             font-size: 18px; /* Размер текста */
             color: #ffffff; /* Белый текст */
             background-color: #333333; /* Тёмно-серый фон */
@@ -94,7 +94,7 @@ body {
         }
         #debug {
             position: fixed;
-            top: 74px;
+            top: 77px;
             left: 0;
             width: 100%;
             background-color: #333;
