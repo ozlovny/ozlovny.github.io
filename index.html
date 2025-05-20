@@ -8,8 +8,6 @@
   <link rel="stylesheet" href="styles.css" />
   <script src="https://js.onclckvd.com/in-stream-ad-admanager/tma.js"></script>
   <script src="//whephiwums.com/sdk.js" data-zone="9286586" data-sdk="show_9286586"></script>
-	<script src="https://telegram.org/js/telegram-web-app.js"></script>
-	
 </head>
  <div id="tasks" class="scene active">
     <div class="app-container">
@@ -24,45 +22,52 @@
     <a class="newstabel__chip" href="https://t.me/ThePlaneOfficial" target="_blank">Открыть</a>
         <img class="newstabel__img" src="newsofficial.png" alt="Логотип проекта">
        </div>
-
+<div class="content">
+    
+  </div>
+     
       <div class="todo-container">
-        <button class="task-button1" id="openMenu1">запустить бота</button>
+        <a href="#" onclick="addTickets()" class="task-button">test</a>
+      <button class="task-button1" id="openMenu1">запустить бота</button>
     <button class="task-button1" id="openMenu2">подписатся</button>
   <button class="task-button1" id="openMenu3">подписатся</button>
     <button class="task-button1" id="openMenu4">подписатся</button>
-        <a id="adButtonTMA" class="task-button tma-ad-button" onclick="handleTmaAdClick()">Посмотреть рекламу (TMA) и получить 10 билетов</a>
+        <a id="adbuttonTMA" class="task-button tma-ad-button" onclick="handleTmaAdClick()">Посмотреть рекламу (TMA) и получить 10 билетов</a>
         <a href="#" onclick="handleButtonClick(this, showAd)" class="task-button">Посмотреть рекламу и получить 10 билетов</a>
       </div>
     </div>
   </div>
-	 <div class="overlay" id="overlay"></div>
+   <div class="overlay" id="overlay"></div>
   <div class="bottom-sheet" id="bottomSheet">
     <button class="close-btn" id="closeSheetBtn" aria-label="Закрыть">&times;</button>
     <div class="drag-bar"></div>
     <div class="sheet-title" id="sheetTitle">образец</div>
     <button class="sheet-btn" id="sheetBtn">образец</button>
   </div>
-	<div style="height: 100px;"></div>
+  
+  <div style="height: 100px;"></div>
 
   <!-- Сцена Обмен (swap) -->
   <div id="swap" class="scene">
-    <h1 style="margin-top: 50px;">Скоро</h1>
+    <h1>Обмен</h1>
+    <p>Контент для обмена.</p>
   </div>
 
   <!-- Сцена Профиль (profile) -->
-  <div id="profile" class="scene">
+    <div id="profile" class="scene">
   <div class="profile-container">
+    <div class="avatar-block">
       <img id="profile-photo" src="" alt="Аватар пользователя" />
+      <div class="avatar-placeholder">Аватар<br>пользователя</div>
+    </div>
     <h2 id="profile-username">Загрузка...</h2>
-    <p id="profile-userid"></p>
-  </div>
     <div class="balance-block">
     </div>
   </div>
       <div class="balance-menu">
   <span class="balance-label">Баланс</span>
   <span class="balance-value">
-    <span id="balance-number">0</span>
+    <span id="profile-balance-value">0</span>
     <img src="animated-ticket.gif" alt="ticket" class="balance-menu__icon" />
   </span>
 </div>
@@ -99,8 +104,24 @@
   <div id="debug">
         <span id="hash">Hash: Generating...</span>
         <span id="time">Time: 0 seconds</span>
-  </div>
-	<script src="debug.js"></script>
+    </div>
+  <script>
+  function generateHash() {
+            return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+
+        // Initialize the hash and set it in the debug panel
+        document.getElementById('hash').textContent = `Hash: ${generateHash()}`;
+
+        // Initialize a timer that starts from 0 seconds
+        let elapsedSeconds = 0;
+
+        // Update the time every second
+        setInterval(() => {
+            elapsedSeconds++;
+            document.getElementById('time').textContent = `Time: ${elapsedSeconds} seconds`;
+        }, 1000);
+  </script>
   <script>
   function showScene(sceneId) {
     // 1. Переключаем сцену
@@ -117,9 +138,11 @@
     // Находим кнопку по sceneId (важно, чтобы в onclick был sceneId)
     const activeBtn = Array.from(buttons).find(btn => btn.getAttribute('onclick').includes(`'${sceneId}'`));
     if (activeBtn) activeBtn.classList.add('active');
-  }
+}
   </script>
-		<script>
+  
+ 
+  <script>
         // Функция для обработки нажатия с задержкой и таймером
         function handleButtonClick(button, callback) {
             if (button.classList.contains('disabled')) {
@@ -167,12 +190,15 @@
             // Находим элемент с балансом
             const balanceElement = document.querySelector('.balance-number');
             const currentBalance = parseInt(balanceElement.textContent, 10);
+          
+          const balanceElement = document.querySelector('.balance-number');
+            const currentBalance = parseInt(balanceElement.textContent, 10);
 
             // Добавляем 10 билетов
             balanceElement.textContent = currentBalance + 10;
         }
 	</script>
- <script>
+      <script>
         // Обрабатываем кнопку для TMA рекламы
         function handleTmaAdClick() {
             const button = document.querySelector('.tma-ad-button');
@@ -229,41 +255,8 @@
             }, 1000); // Обновляем каждую секунду
         }
 	    
- </script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-  const tg = window.Telegram?.WebApp;
-
-  const usernameElem = document.getElementById('profile-username');
-  const photoElem = document.getElementById('profile-photo');
-  const userIdElem = document.getElementById('profile-userid');
-
-  if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
-    const user = tg.initDataUnsafe.user;
-
-    // Отображаем username (ник)
-    usernameElem.textContent = user.username ? `@${user.username}` : (user.first_name || 'Пользователь');
-
-    // Отображаем user id (можно убрать, если не нужно)
-    userIdElem.textContent = `ID: ${user.id}`;
-
-    // Если есть фото, подгружаем аватар (Telegram WebApp не даёт прямую ссылку, но можно использовать user.photo_url, если есть)
-    // Обычно Telegram WebApp не даёт фото напрямую, но если есть, подставьте сюда
-    if (user.photo_url) {
-      photoElem.src = user.photo_url;
-    } else {
-      // Если фото нет, ставим заглушку с инициалами или иконку
-      photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // пример иконки пользователя
-    }
-  } else {
-    // Если Telegram API недоступен (например, в браузере)
-    usernameElem.textContent = 'Гость';
-    userIdElem.textContent = '';
-    photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
-  }
-});
-  </script>
-	  <script>
+    </script>
+   <script>
     const overlay = document.getElementById('overlay');
     const sheet = document.getElementById('bottomSheet');
     const closeBtn = document.getElementById('closeSheetBtn');
@@ -323,6 +316,32 @@
     sheet.querySelector('.drag-bar').addEventListener('touchend', function() {
       startY = null;
     });
-	  </script>
+  </script>
+<script>
+document.getElementById('profile-balance-value').textContent = 10;
+</script>
+<script>
+let userBalance = 0;
+
+// Обновление баланса во всех сценах
+function updateBalanceDisplay() {
+    const mainBalance = document.querySelector('.balance-number');
+    if (mainBalance) mainBalance.textContent = userBalance;
+
+    const profileBalance = document.getElementById('profile-balance-value');
+    if (profileBalance) profileBalance.textContent = userBalance;
+}
+
+// Добавление билетов
+function addTickets() {
+    userBalance += 10;
+    updateBalanceDisplay();
+}
+
+// Инициализация баланса при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    updateBalanceDisplay();
+});
+</script>
 </body>
 </html>
