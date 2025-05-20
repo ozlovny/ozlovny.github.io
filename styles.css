@@ -1,4 +1,4 @@
-body {
+ body {
       background: #000;
       font-family: 'SF Pro Display', Arial, sans-serif;
       margin: 0;
@@ -8,7 +8,7 @@ body {
     }
   .scrollable-content {
             position: absolute;
-            top: 50px; /* Высота верхнего меню */
+            top: 10px; /* Высота верхнего меню */
             bottom: 60px; /* Высота нижнего меню */
             left: 0;
             right: 0;
@@ -27,7 +27,10 @@ body {
         }
 
         .scene.active {
-            display: flex;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 	}
 
         .balance-display {
@@ -57,6 +60,8 @@ body {
         .todo-container {
             margin-top: 50px; /* Отступ сверху */
         }
+
+
 
         .task-button {
             display: block;
@@ -239,9 +244,9 @@ body {
   object-fit: cover;
 	    }
 .profile-container {
-  margin: 20px auto 0;
+  margin: 1px auto 0;
   padding: 20px 30px;
-  max-width: 320px;
+  width: 80%;
   background: #000;
   border-radius: 16px;
   color: #fff;
@@ -356,7 +361,6 @@ body {
   position: relative;
   display: inline-block;
 }
-
 .balance-number-mini {
   position: absolute;
   bottom: -7px;
@@ -409,6 +413,3 @@ body {
   height: 24px;
   vertical-align: middle;
 }
-
-
-	 
