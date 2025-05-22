@@ -323,5 +323,31 @@
       startY = null;
     });
 	  </script>
+	<script>
+document.getElementById('profile-balance-value').textContent = 10;
+</script>
+<script>
+let userBalance = 0;
+
+// Обновление баланса во всех сценах
+function updateBalanceDisplay() {
+    const mainBalance = document.querySelector('.balance-number');
+    if (mainBalance) mainBalance.textContent = userBalance;
+
+    const profileBalance = document.getElementById('profile-balance-value');
+    if (profileBalance) profileBalance.textContent = userBalance;
+}
+
+// Добавление билетов
+function addTickets() {
+    userBalance += 10;
+    updateBalanceDisplay();
+}
+
+// Инициализация баланса при загрузке страницы
+document.addEventListener('DOMContentLoaded', function() {
+    updateBalanceDisplay();
+});
+</script>
 </body>
 </html>
