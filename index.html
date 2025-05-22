@@ -167,6 +167,9 @@
             const balanceElement = document.querySelector('.balance-number');
             const currentBalance = parseInt(balanceElement.textContent, 10);
 
+		const profileBalance = document.getElementById('balance-value');
+    if (profileBalance) profileBalance.textContent = userBalance;
+
             // Добавляем 10 билетов
             balanceElement.textContent = currentBalance + 10;
         }
