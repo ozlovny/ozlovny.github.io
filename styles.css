@@ -7,6 +7,9 @@
       min-height: 100vh;
       color: #fff;
     }
+.window.initCdTma {
+     margin-top: 50px;
+}
   .scrollable-content {
             position: absolute;
             top: 10px; /* Высота верхнего меню */
