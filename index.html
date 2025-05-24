@@ -359,5 +359,38 @@ document.addEventListener('DOMContentLoaded', function() {
   showTasksWithSkeleton();
 });
 </script>
+	 <script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const tg = window.Telegram?.WebApp;
+
+  const usernameElem = document.getElementById('profile-username');
+  const photoElem = document.getElementById('profile-photo');
+  const userIdElem = document.getElementById('profile-userid');
+
+  if (tg && tg.initDataUnsafe && tg.initDataUnsafe.user) {
+    const user = tg.initDataUnsafe.user;
+
+    // Отображаем username (ник)
+    usernameElem.textContent = user.username ? `@${user.username}` : (user.first_name || 'Пользователь');
+
+    // Отображаем user id (можно убрать, если не нужно)
+    userIdElem.textContent = `ID: ${user.id}`;
+
+    // Если есть фото, подгружаем аватар (Telegram WebApp не даёт прямую ссылку, но можно использовать user.photo_url, если есть)
+    // Обычно Telegram WebApp не даёт фото напрямую, но если есть, подставьте сюда
+    if (user.photo_url) {
+      photoElem.src = user.photo_url;
+    } else {
+      // Если фото нет, ставим заглушку с инициалами или иконку
+      photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'; // пример иконки пользователя
+    }
+  } else {
+    // Если Telegram API недоступен (например, в браузере)
+    usernameElem.textContent = 'Гость';
+    userIdElem.textContent = '';
+    photoElem.src = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+  }
+});
+	 </script>
 </body>
 </html>
